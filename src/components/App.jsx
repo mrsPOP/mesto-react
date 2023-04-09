@@ -10,6 +10,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({ name: "", link: "" });
 
   const handleCardClick = (card) => {
@@ -22,6 +23,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsImagePopupOpen(false);
+    setIsDeleteCardPopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   };
 
@@ -52,32 +54,29 @@ function App() {
       <PopupWithForm
         title={"Редактировать профиль"}
         name={"edit-form"}
-        buttonName={"Сохранить"}
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       >
         <input
           id="profile-name-input"
-          class="popup__input popup__input_el_name"
+          className="popup__input popup__input_el_name"
           type="text"
-          value=""
           placeholder="Имя"
-          minlength="2"
-          maxlength="40"
+          minLength="2"
+          maxLength="40"
           required
         />
-        <span class="profile-name-input-error popup__input-error"></span>
+        <span className="profile-name-input-error popup__input-error"></span>
         <input
           id="profile-description-input"
-          class="popup__input popup__input_el_description"
+          className="popup__input popup__input_el_description"
           type="text"
-          value=""
           placeholder="О себе"
-          minlength="2"
-          maxlength="200"
+          minLength="2"
+          maxLength="200"
           required
         />
-        <span class="profile-description-input-error popup__input-error"></span>
+        <span className="profile-description-input-error popup__input-error"></span>
       </PopupWithForm>
 
       <PopupWithForm
@@ -89,13 +88,12 @@ function App() {
       >
         <input
           id="new-photo-link-input"
-          class="popup__input"
+          className="popup__input"
           type="url"
-          value=""
           placeholder="Ссылка на картинку"
           required
         />
-        <span class="new-photo-link-input-error popup__input-error"></span>
+        <span className="new-photo-link-input-error popup__input-error"></span>
       </PopupWithForm>
 
       <PopupWithForm
@@ -107,24 +105,22 @@ function App() {
       >
         <input
           id="new-place-name-input"
-          class="popup__input popup__input_card-name"
+          className="popup__input popup__input_card-name"
           type="text"
-          value=""
           placeholder="Название"
-          minlength="2"
-          maxlength="30"
+          minLength="2"
+          maxLength="30"
           required
         />
-        <span class="new-place-name-input-error popup__input-error"></span>
+        <span className="new-place-name-input-error popup__input-error"></span>
         <input
           id="new-place-link-input"
-          class="popup__input popup__input_card-link"
+          className="popup__input popup__input_card-link"
           type="url"
-          value=""
           placeholder="Ссылка на картинку"
           required
         />
-        <span class="new-place-link-input-error popup__input-error"></span>
+        <span className="new-place-link-input-error popup__input-error"></span>
       </PopupWithForm>
 
       <ImagePopup
@@ -132,22 +128,6 @@ function App() {
         card={selectedCard}
         onClose={closeAllPopups}
       />
-
-      <div id="deleteCardPopup" class="popup">
-        <div class="popup__container">
-          <button
-            class="popup__close-button"
-            type="button"
-            aria-label="закрыть"
-          ></button>
-          <h2 class="popup__header">Вы уверены?</h2>
-          <form class="popup__form" name="delete-card">
-            <button class="popup__button" type="submit">
-              Да
-            </button>
-          </form>
-        </div>
-      </div>
     </>
   );
 }

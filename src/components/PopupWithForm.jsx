@@ -1,18 +1,18 @@
 const PopupWithForm = ({ title, name, buttonName, isOpen, onClose, children }) => {
   return (
-    <div class={`popup ${isOpen ? "popup_opened" : ""}`}>
-      <div class="popup__container">
+    <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
+      <div className="popup__container">
         <button
 					onClick={onClose}
-          class="popup__close-button"
+          className="popup__close-button"
           type="button"
           aria-label="закрыть"
         ></button>
-        <h2 class="popup__header">{title}</h2>
-        <form class="popup__form" name={name} novalidate>
+        <h2 className="popup__header">{title}</h2>
+        <form className="popup__form" name={name} noValidate>
           {children}
-          <button class="popup__button" type="submit">
-            {buttonName}
+          <button className="popup__button" type="submit">
+          {buttonName || 'Сохранить'}
           </button>
         </form>
       </div>

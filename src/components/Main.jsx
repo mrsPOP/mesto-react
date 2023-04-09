@@ -17,10 +17,8 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) => {
         setUserAvatar(data.avatar);
       })
       .catch(() => console.log);
-  }, []);
 
-  useEffect(() => {
-    api
+      api
       .getInitialCards()
       .then((initialCards) => {
         setCards(initialCards);
@@ -65,7 +63,7 @@ const Main = ({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) => {
       <section className="elements">
         <ul className="elements-list">
           {cards.map((cardInfo) => {
-            return <Card cardInfo={cardInfo} onCardClick={onCardClick} />;
+            return <Card key={cardInfo._id} cardInfo={cardInfo} onCardClick={onCardClick} />;
           })}
         </ul>
       </section>
