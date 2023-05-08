@@ -19,7 +19,6 @@ const AddPlacePopup = ({ isOpen, onClose, onSubmit }) => {
       onSubmit={(evt) => {
         evt.preventDefault();
         onSubmit({ name: cardName, link: cardLink });
-        onClose();
       }}
     >
       <input
@@ -29,6 +28,7 @@ const AddPlacePopup = ({ isOpen, onClose, onSubmit }) => {
         placeholder="Название"
         minLength="2"
         maxLength="30"
+        value={cardName}
         onChange={(evt) => {
           setCardName(evt.target.value);
         }}
@@ -40,6 +40,7 @@ const AddPlacePopup = ({ isOpen, onClose, onSubmit }) => {
         className="popup__input popup__input_card-link"
         type="url"
         placeholder="Ссылка на картинку"
+        value={cardLink}
         onChange={(evt) => {
           setCardLink(evt.target.value);
         }}

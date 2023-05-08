@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import ImagePopup from "./ImagePopup";
-import { currentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -69,9 +69,11 @@ function App() {
 
   const handleCardLike = (card) => {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      })
+      .catch((err) => console.log("Ошибка, не удалось поставить лайк", err));
   };
 
   const handleCardDelete = (card) => {
@@ -108,13 +110,15 @@ function App() {
   const handleAddPlaceSubmit = (newCard) => {
     api
       .addNewCard(newCard)
-      .then((nCard) => setCards([nCard, ...cards]))
+      .then((nCard) => {
+        setCards([nCard, ...cards]);
+        closeAllPopups();
+      })
       .catch((err) => console.log("Ошибка удаления карточки", err));
   };
 
   return (
-    <>
-      <currentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={currentUser}>
         <div className="page">
           <Header />
           <Main
@@ -150,8 +154,7 @@ function App() {
           card={selectedCard}
           onClose={closeAllPopups}
         />
-      </currentUserContext.Provider>
-    </>
+      </CurrentUserContext.Provider>
   );
 }
 

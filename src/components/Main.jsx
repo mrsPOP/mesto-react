@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import api from "../utils/api";
 import Card from "./Card";
-import { currentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 const Main = ({
   onEditProfile,
@@ -13,7 +13,7 @@ const Main = ({
   cards,
   onCardDelete,
 }) => {
-  const currentUser = useContext(currentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">

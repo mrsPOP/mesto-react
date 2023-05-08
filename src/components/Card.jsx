@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { currentUserContext } from "../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 const Card = ({ cardInfo, onCardClick, onCardLike }) => {
-  const currentUser = useContext(currentUserContext);
+  const currentUser = useContext(CurrentUserContext);
   const isOwn = cardInfo.owner._id === currentUser._id;
   const isLiked = cardInfo.likes.some((i) => i._id === currentUser._id);
   const cardLikeButtonClassName = `element__like ${

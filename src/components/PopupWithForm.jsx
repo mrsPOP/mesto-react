@@ -9,7 +9,7 @@ const PopupWithForm = ({ title, name, buttonName, isOpen, onClose, children, onS
           aria-label="закрыть"
         ></button>
         <h2 className="popup__header">{title}</h2>
-        <form className="popup__form" name={name} onSubmit={onSubmit} noValidate>
+        <form className="popup__form" name={name} onSubmit={onSubmit}>
           {children}
           <button className="popup__button" type="submit">
           {buttonName || 'Сохранить'}
