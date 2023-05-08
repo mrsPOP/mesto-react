@@ -76,7 +76,7 @@ class Api {
     } else {
       return this.unlike(cardId);
     }
-  };
+  }
 
   changeAvatar(avatar) {
     return this._makeRequest(this.baseUrl + "/users/me/avatar", {

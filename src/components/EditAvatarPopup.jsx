@@ -8,29 +8,29 @@ const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar }) => {
     inputRef.current.value = "";
   }, [isOpen]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(evt) {
+    evt.preventDefault();
     onUpdateAvatar(inputRef.current.value);
   }
   return (
     <PopupWithForm
-          title={"Обновить аватар"}
-          name={"edit-profile-photo"}
-          buttonName={"Создать"}
-          isOpen={isOpen}
-          onClose={onClose}
-          onSubmit={handleSubmit}
-        >
-          <input
-            id="new-photo-link-input"
-            ref={inputRef}
-            className="popup__input"
-            type="url"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="new-photo-link-input-error popup__input-error"></span>
-        </PopupWithForm>
+      title={"Обновить аватар"}
+      name={"edit-profile-photo"}
+      buttonName={"Создать"}
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
+      <input
+        id="new-photo-link-input"
+        ref={inputRef}
+        className="popup__input"
+        type="url"
+        placeholder="Ссылка на картинку"
+        required
+      />
+      <span className="new-photo-link-input-error popup__input-error"></span>
+    </PopupWithForm>
   );
 };
 
