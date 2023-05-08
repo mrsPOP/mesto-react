@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { currentUserContext } from "../contexts/CurrentUserContext";
+import api from '../utils/api';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -20,6 +21,23 @@ function App() {
     _id: '',
     cohort: '',
   });
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    api
+      .getUserInfo()
+      .then((data) => {
+        setСurrentUser(data)
+      })
+      .catch(() => console.log);
+
+      api
+      .getInitialCards()
+      .then((initialCards) => {
+        setCards(initialCards);
+      })
+      .catch(() => console.log);
+  }, []);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
