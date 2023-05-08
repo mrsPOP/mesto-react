@@ -70,6 +70,14 @@ class Api {
     });
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.like(cardId);
+    } else {
+      return this.unlike(cardId);
+    }
+  };
+
   changeAvatar(avatar) {
     return this._makeRequest(this.baseUrl + "/users/me/avatar", {
       method: "PATCH",

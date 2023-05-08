@@ -1,4 +1,4 @@
-const PopupWithForm = ({ title, name, buttonName, isOpen, onClose, children }) => {
+const PopupWithForm = ({ title, name, buttonName, isOpen, onClose, children, onSubmit }) => {
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
@@ -9,7 +9,7 @@ const PopupWithForm = ({ title, name, buttonName, isOpen, onClose, children }) =
           aria-label="закрыть"
         ></button>
         <h2 className="popup__header">{title}</h2>
-        <form className="popup__form" name={name} noValidate>
+        <form className="popup__form" name={name} onSubmit={onSubmit} noValidate>
           {children}
           <button className="popup__button" type="submit">
           {buttonName || 'Сохранить'}
